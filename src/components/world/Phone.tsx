@@ -185,7 +185,7 @@ export default function Phone({
                         <p className="mt-1 text-xs text-white/60">{player.relation >= 2 ? "Vous êtes mariés dans cette partie." : `Relation en construction · ${player.dates}/${MARRY_DATES_REQUIRED} rendez-vous réalisés.`}</p>
                       </>
                     ) : (
-                      <p className="mt-2 text-sm text-white/70">Tu n'as pas encore de partenaire. Les rencontres peuvent commencer sur la Corniche.</p>
+                      <p className="mt-2 text-sm text-white/70">Tu n&apos;as pas encore de partenaire. Les rencontres peuvent commencer sur la Corniche.</p>
                     )}
                   </section>
                   <section className="glass rounded-2xl p-4">
@@ -208,22 +208,22 @@ export default function Phone({
                         ))}
                       </div>
                     ) : (
-                      <p className="mt-2 text-xs leading-relaxed text-white/55">Aucun enfant dans ton foyer pour le moment. Le projet d'adoption devient accessible après le mariage.</p>
+                      <p className="mt-2 text-xs leading-relaxed text-white/55">Aucun enfant dans ton foyer pour le moment. Le projet d&apos;adoption devient accessible après le mariage.</p>
                     )}
                     {player.relation >= 2 && (player.children ?? []).length < 3 && (
                       <button onClick={() => { act("adopt_child"); setApp(null); }} disabled={busy || player.slot >= 3 || player.money < 50000 || player.stats.energy < 12} className="mt-3 w-full rounded-xl bg-emerald-500/20 px-3 py-2.5 text-xs font-bold text-emerald-100 disabled:opacity-40">🤝 Préparer une adoption · 50 000 FCFA</button>
                     )}
-                    <p className="mt-2 text-[10px] leading-relaxed text-white/35">Simulation fictive : l'accueil d'un enfant est représenté par une adoption simplifiée, sans démarche administrative réelle.</p>
+                    <p className="mt-2 text-[10px] leading-relaxed text-white/35">Simulation fictive : l&apos;accueil d&apos;un enfant est représenté par une adoption simplifiée, sans démarche administrative réelle.</p>
                   </section>
                   <section className="glass rounded-2xl p-4">
                     <p className="text-[10px] font-bold uppercase tracking-wider text-gold-300">Vie familiale au quotidien</p>
                     <p className="mt-2 text-xs leading-relaxed text-white/65">{player.relation >= 2 ? `Ton foyer partage désormais le quotidien avec ${player.partnerName}. Des moments d'entraide, des repas et parfois de petits désaccords peuvent survenir au fil des journées.` : player.partnerName ? `Ta relation avec ${player.partnerName} évolue au fil de vos échanges. Prendre du temps ensemble aide à entretenir ce lien.` : "Ta famille d'origine garde une place dans ton histoire. Des appels, des repas partagés et des nouvelles des proches peuvent ponctuer tes journées."}</p>
-                    <p className="mt-2 text-[10px] text-fuchsia-200/70">Les événements familiaux se déclenchent automatiquement au passage d'une nouvelle journée.</p>
+                    <p className="mt-2 text-[10px] text-fuchsia-200/70">Les événements familiaux se déclenchent automatiquement au passage d&apos;une nouvelle journée.</p>
                     <button onClick={() => { act("social", "famille"); setApp(null); }} disabled={busy} className="mt-3 w-full rounded-xl bg-white/10 px-3 py-2.5 text-xs font-bold text-white transition hover:bg-white/15 disabled:opacity-40">📞 Appeler la famille</button>
                     <button onClick={() => { act("family_visit"); setApp(null); }} disabled={busy || player.slot >= 3 || player.money < 2000 || player.stats.energy < 8} className="mt-2 w-full rounded-xl bg-fuchsia-500/20 px-3 py-2.5 text-xs font-bold text-fuchsia-100 transition hover:bg-fuchsia-500/30 disabled:opacity-40">🏡 Rendre visite à la famille · 2 000 FCFA</button>
                     <p className="mt-2 text-[10px] text-white/40">Cette visite prend un moment de la journée et améliore ton bonheur et ta réputation.</p>
                   </section>
-                  <p className="text-[10px] leading-relaxed text-white/35">Les enfants grandissent au fil des jours. L'adoption et les activités parentales sont disponibles dans cette version ; la grossesse, l'école et les interactions autonomes avancées restent à développer.</p>
+                  <p className="text-[10px] leading-relaxed text-white/35">Les enfants grandissent au fil des jours. L&apos;adoption et les activités parentales sont disponibles dans cette version ; la grossesse, l&apos;école et les interactions autonomes avancées restent à développer.</p>
                 </div>
               )}
               {app === "journal" && (
@@ -294,7 +294,7 @@ export default function Phone({
 
                   <div className="rounded-xl bg-white/[0.03] p-3 text-[11px] text-white/60">
                     <p>💼 Journées travaillées : <b className="text-white">{player.totalShifts}</b></p>
-                    <p>📍 Missions aujourd'hui : <b className="text-white">{player.missionsToday}/3</b></p>
+                    <p>📍 Missions aujourd&apos;hui : <b className="text-white">{player.missionsToday}/3</b></p>
                     <p>🗺️ Lieux visités : <b className="text-white">{player.visited.length}/11</b></p>
                     <p>🏗️ Businesses : <b className="text-white">{player.businesses.length}/4</b></p>
                   </div>
@@ -303,7 +303,7 @@ export default function Phone({
                     <p className="text-xs font-bold uppercase tracking-wider text-gold-300">Sauvegarde de ta vie</p>
                     <p className="mt-2 text-xs leading-relaxed text-white/60">Crée une copie de ta progression et de ton journal dans un fichier JSON. Conserve ce fichier dans ton téléphone pour garder une sauvegarde supplémentaire.</p>
                     <button onClick={exportSave} className="mt-3 w-full rounded-xl bg-gold-400/15 px-3 py-3 text-xs font-bold text-gold-200 ring-1 ring-gold-300/20 transition hover:bg-gold-400/25">⬇️ Exporter ma sauvegarde</button>
-                    <p className="mt-2 text-[10px] text-white/35">L'export ne remplace pas la sauvegarde automatique locale. La restauration depuis un fichier sera ajoutée dans une prochaine version.</p>
+                    <p className="mt-2 text-[10px] text-white/35">L&apos;export ne remplace pas la sauvegarde automatique locale. La restauration depuis un fichier sera ajoutée dans une prochaine version.</p>
                   </section>
                 </div>
               )}
