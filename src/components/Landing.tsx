@@ -90,7 +90,7 @@ export default function Landing({
             </h1>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-white/75 sm:text-lg">
               Commence au Sénégal et explore progressivement un monde vivant : <strong className="text-white">marche, cours, conduis des taxis, parle aux habitants</strong>,
-              fais des missions du village de Yoff aux villas des Almadies. Travaille à Sandaga, révise à l'UCAD, marie-toi au son du sabar —
+              fais des missions du village de Yoff aux villas des Almadies. Travaille à Sandaga, révise à l&apos;UCAD, marie-toi au son du sabar —
               chaque choix écrit ton destin.
             </p>
             <p className="mt-3 text-xs font-bold text-white/50">
@@ -181,7 +181,7 @@ export default function Landing({
           Une vie entière, <span className="text-flag">un pays vibrant</span>
         </h2>
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-white/55">
-          Le premier chapitre reproduit le quotidien sénégalais : l'économie en francs CFA, la chaleur de la teranga,
+          Le premier chapitre reproduit le quotidien sénégalais : l&apos;économie en francs CFA, la chaleur de la teranga,
           les fêtes religieuses, la débrouille et les grands rêves. En photos réelles haute résolution.
         </p>
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -245,7 +245,7 @@ export default function Landing({
             LIFE IN THE WORLD — fait avec teranga 🇸🇳
           </p>
           <p className="text-[11px] text-white/40">
-            Photos réelles haute résolution : photographes Pexels du Sénégal & d'Afrique. Sauvegardes stockées en base PostgreSQL.
+            Photos réelles haute résolution : photographes Pexels du Sénégal & d&apos;Afrique. Sauvegardes stockées en base PostgreSQL.
           </p>
         </div>
       </footer>

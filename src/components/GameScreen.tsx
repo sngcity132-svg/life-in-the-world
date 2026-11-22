@@ -143,7 +143,7 @@ export default function GameScreen({
       <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-night-950 px-4 text-center">
         <span className="text-5xl">🌵</span>
         <p className="font-display text-xl font-bold">Cette vie est introuvable.</p>
-        <button onClick={onExit} className="btn-gold rounded-xl px-6 py-3 text-sm font-bold">Retour à l'accueil</button>
+        <button onClick={onExit} className="btn-gold rounded-xl px-6 py-3 text-sm font-bold">Retour à l&apos;accueil</button>
       </div>
     );
   }
@@ -247,7 +247,7 @@ export default function GameScreen({
               <div className="absolute inset-0 bg-gradient-to-t from-night-950/90 to-transparent" />
               <span className="absolute bottom-3 left-1/2 -translate-x-1/2 text-4xl">🕊️</span>
             </div>
-            <h2 className="font-display text-4xl font-extrabold tracking-tight">Une vie s'achève</h2>
+            <h2 className="font-display text-4xl font-extrabold tracking-tight">Une vie s&apos;achève</h2>
             <p className="mt-3 text-sm leading-relaxed text-white/60">
               {player.name} a vécu <strong className="text-white">{player.day} jours</strong> à Dakar.
               Chaque vie laisse une trace — la prochaine sera encore plus belle.

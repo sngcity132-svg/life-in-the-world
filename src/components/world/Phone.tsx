@@ -123,7 +123,7 @@ export default function Phone({
             </div>
 
             <div className="mt-auto pt-5 text-center text-[10px] text-white/35">
-              P ou Échap pour fermer · la ville t'attend
+              P ou Échap pour fermer · la ville t&apos;attend
             </div>
           </div>
         ) : (
@@ -154,7 +154,7 @@ export default function Phone({
                   <section className="glass rounded-2xl p-4">
                     <p className="text-xs font-bold uppercase tracking-wider text-gold-300">Revenus passifs quotidiens</p>
                     <p className="mt-1 text-xl font-extrabold text-emerald-200">+{fmtMoney(player.businesses.reduce((sum, id) => sum + (BUSINESSES.find((b) => b.id === id)?.income ?? 0), 0))} FCFA</p>
-                    <p className="mt-1 text-[10px] text-white/45">Versés au début d'une nouvelle journée lorsque tu dors.</p>
+                    <p className="mt-1 text-[10px] text-white/45">Versés au début d&apos;une nouvelle journée lorsque tu dors.</p>
                   </section>
                   <section className="space-y-2">
                     <div className="flex items-center justify-between"><p className="text-xs font-bold uppercase tracking-wider text-gold-300">Investissements disponibles</p><span className="text-[10px] text-white/40">{player.businesses.length}/{BUSINESSES.length} acquis</span></div>

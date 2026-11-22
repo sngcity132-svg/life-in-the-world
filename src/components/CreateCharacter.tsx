@@ -140,7 +140,7 @@ export default function CreateCharacter({
 
             {/* Origine */}
             <section>
-              <h2 className="mb-3 font-display text-lg font-bold">3 · Ton quartier d'origine</h2>
+              <h2 className="mb-3 font-display text-lg font-bold">3 · Ton quartier d&apos;origine</h2>
               <div className="grid gap-3 sm:grid-cols-2">
                 {ORIGINS.map((o) => (
                   <button
@@ -192,7 +192,7 @@ export default function CreateCharacter({
               <div className="space-y-2.5 p-4 text-xs">
                 <div className="flex justify-between"><span className="text-white/50">Argent de départ</span><strong className="text-gold-300">30 000 FCFA {origin === "plateau" ? "+ 15 000" : ""}</strong></div>
                 <div className="flex justify-between"><span className="text-white/50">Logement</span><strong>Chez la famille, Médina</strong></div>
-                <div className="flex justify-between"><span className="text-white/50">Diplôme</span><strong>Aucun (pour l'instant)</strong></div>
+                <div className="flex justify-between"><span className="text-white/50">Diplôme</span><strong>Aucun (pour l&apos;instant)</strong></div>
                 <div className="flex justify-between"><span className="text-white/50">Bonus</span><strong className="text-teranga-300">{selectedOrigin.bonusLabel}</strong></div>
                 <button
                   onClick={submit}

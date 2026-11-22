@@ -343,7 +343,7 @@ export function SocialPanel({ player, act, busy }: PanelProps) {
               ) : (
                 <>
                   <p className="font-display text-xl font-extrabold">Célibataire</p>
-                  <p className="mt-1 text-xs text-white/65">Le grand amour t'attend quelque part entre Yoff et la Corniche…</p>
+                  <p className="mt-1 text-xs text-white/65">Le grand amour t&apos;attend quelque part entre Yoff et la Corniche…</p>
                 </>
               )}
             </div>
