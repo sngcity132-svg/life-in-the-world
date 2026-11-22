@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160">
+<defs><linearGradient id="g" x2="0" y2="1"><stop stop-color="#d8e5ef"/><stop offset="1" stop-color="#c9b99f"/></linearGradient></defs>
+<rect width="160" height="160" rx="28" fill="url(#g)"/><circle cx="80" cy="67" r="43" fill="#202020"/>
+<path d="M28 160c3-38 24-55 52-55s49 17 52 55" fill="#315c83"/>
+<ellipse cx="80" cy="70" rx="30" ry="36" fill="#75452b"/>
+<path d="M50 67c-2-29 12-44 31-44 22 0 33 17 29 43-8-8-14-17-17-25-12 14-26 21-43 26" fill="#202020"/>
+<circle cx="69" cy="70" r="2.5" fill="#241b18"/><circle cx="92" cy="70" r="2.5" fill="#241b18"/>
+<path d="M71 88q9 7 18 0" fill="none" stroke="#754a3b" stroke-width="3" stroke-linecap="round"/>
+<title>Jean-Baptiste Diouf</title></svg>

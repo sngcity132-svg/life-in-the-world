@@ -1,0 +1,15 @@
+{
+  "name": "LIFE IN THE WORLD — Open World Life Simulator",
+  "short_name": "LIFE WORLD",
+  "description": "Simulateur de vie en monde ouvert. Premier chapitre : Sénégal.",
+  "lang": "fr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#070b09",
+  "theme_color": "#0e8a4a",
+  "icons": [
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

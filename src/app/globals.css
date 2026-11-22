@@ -1,0 +1,240 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Bricolage Grotesque", "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+
+  --color-night-950: #070b09;
+  --color-night-900: #0c1210;
+  --color-night-800: #121a16;
+  --color-night-700: #1b2620;
+  --color-night-600: #27352d;
+
+  --color-teranga-300: #6fe3a5;
+  --color-teranga-400: #2fbf71;
+  --color-teranga-500: #17a35a;
+  --color-teranga-600: #0e8a4a;
+
+  --color-gold-200: #ffe7b3;
+  --color-gold-300: #ffd579;
+  --color-gold-400: #f5b942;
+  --color-gold-500: #e8a020;
+
+  --color-flame-400: #ff6a4d;
+  --color-flame-500: #e0492f;
+
+  --color-sand-100: #f6efe3;
+  --color-sand-300: #d9c9a8;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-night-950);
+  color: #f2f5f1;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: rgba(245, 185, 66, 0.35);
+  color: #fff;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 99px;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(245, 185, 66, 0.4);
+}
+
+@layer components {
+  .glass {
+    background: rgba(255, 255, 255, 0.045);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+  .glass-deep {
+    background: rgba(9, 14, 11, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+  .text-flag {
+    background: linear-gradient(100deg, #2fbf71 5%, #ffd579 48%, #ff6a4d 95%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .btn-gold {
+    background: linear-gradient(135deg, #ffd579, #f5b942 45%, #e8a020);
+    color: #1a1204;
+    box-shadow: 0 8px 30px -6px rgba(245, 185, 66, 0.45);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  }
+  .btn-gold:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 40px -6px rgba(245, 185, 66, 0.6);
+    filter: brightness(1.05);
+  }
+  .btn-gold:active {
+    transform: translateY(0);
+  }
+  .btn-gold:disabled {
+    filter: grayscale(0.7) brightness(0.6);
+    box-shadow: none;
+    transform: none;
+    cursor: not-allowed;
+  }
+  .card-lift {
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  .card-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 44px -14px rgba(0, 0, 0, 0.65);
+    border-color: rgba(245, 185, 66, 0.35);
+  }
+  .card-lift .zoom-img {
+    transition: transform 0.6s cubic-bezier(0.2, 0.6, 0.2, 1);
+  }
+  .card-lift:hover .zoom-img {
+    transform: scale(1.07);
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+}
+
+@keyframes kenburns {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+  100% {
+    transform: scale(1.09) translate(1.2%, -1%);
+  }
+}
+.kenburns {
+  animation: kenburns 22s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.fade-up {
+  animation: fadeUp 0.6s ease both;
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateX(28px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+.toast-in {
+  animation: toastIn 0.35s cubic-bezier(0.2, 0.8, 0.3, 1) both;
+}
+
+@keyframes pulseSoft {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+.pulse-soft {
+  animation: pulseSoft 1.6s ease-in-out infinite;
+}
+
+@keyframes floatY {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+.float-y {
+  animation: floatY 5s ease-in-out infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee {
+  animation: marquee 36s linear infinite;
+}
+
+@keyframes shimmer {
+  from {
+    background-position: -400px 0;
+  }
+  to {
+    background-position: 400px 0;
+  }
+}
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.04) 25%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.04) 75%
+  );
+  background-size: 800px 100%;
+  animation: shimmer 1.4s linear infinite;
+}
+
+.bar-fill {
+  transition: width 0.7s cubic-bezier(0.3, 0.8, 0.3, 1);
+}
+
+@keyframes phoneIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.phone-in {
+  animation: phoneIn 0.32s cubic-bezier(0.2, 0.8, 0.3, 1) both;
+}
+
+.stat-low {
+  animation: pulseSoft 1.4s ease-in-out infinite;
+}
