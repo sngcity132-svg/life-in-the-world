@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import {
   BUILDINGS, Building, DISTRICTS, District, MISSION_TARGETS, NPCS, NpcDef,
   SPOTS, Spot, TRAFFIC, WORLD, collide, dist, districtAt, doorPos, LOVE_PORTRAITS,
@@ -76,24 +76,40 @@ export default function WorldGame({
   const [touchRun, setTouchRun] = useState(false);
   const [mapPosition, setMapPosition] = useState({ x: WORLD.spawn.x, y: WORLD.spawn.y });
   const [mapExpanded, setMapExpanded] = useState(false);
-  const [isOnline, setIsOnline] = useState(true);
-  useEffect(() => {
-    setIsOnline(navigator.onLine);
-    const online = () => setIsOnline(true);
-    const offline = () => setIsOnline(false);
-    window.addEventListener("online", online);
-    window.addEventListener("offline", offline);
-    return () => { window.removeEventListener("online", online); window.removeEventListener("offline", offline); };
-  }, []);
+  const isOnline = useSyncExternalStore(
+    (cb) => {
+      window.addEventListener("online", cb);
+      window.addEventListener("offline", cb);
+      return () => {
+        window.removeEventListener("online", cb);
+        window.removeEventListener("offline", cb);
+      };
+    },
+    () => navigator.onLine,
+    () => true,
+  );
+
+  /* Réinitialise l'UI quand on change de partie / de ville (sans setState dans un effet). */
+  const worldKey = `${player.id}:${player.cityId}`;
+  const [prevWorldKey, setPrevWorldKey] = useState(worldKey);
+  if (prevWorldKey !== worldKey) {
+    setPrevWorldKey(worldKey);
+    setHelp(true);
+    setDialogue(null);
+    setMissionUi(null);
+    setBigMap(false);
+  }
   const isTouch = useMemo(
     () => typeof window !== "undefined" && ("ontouchstart" in window || navigator.maxTouchPoints > 0),
     [],
   );
 
   const propsRef = useRef({ player, busy, phoneOpen, dialogueOpen: false, bigMap });
-  propsRef.current = { player, busy, phoneOpen, dialogueOpen: dialogue !== null, bigMap };
   const actionsRef = useRef({ act, notify, onPhone });
-  actionsRef.current = { act, notify, onPhone };
+  useEffect(() => {
+    propsRef.current = { player, busy, phoneOpen, dialogueOpen: dialogue !== null, bigMap };
+    actionsRef.current = { act, notify, onPhone };
+  });
 
   const simRef = useRef<Sim | null>(null);
   const inputRef = useRef({ up: false, down: false, left: false, right: false, run: false });
@@ -134,10 +150,6 @@ export default function WorldGame({
       bannerTimer: null,
     };
     helpHiddenRef.current = false;
-    setHelp(true);
-    setDialogue(null);
-    setMissionUi(null);
-    setBigMap(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [player.id, player.cityId]);
 
@@ -394,7 +406,6 @@ export default function WorldGame({
       const sim = simRef.current;
       if (sim?.bannerTimer) clearTimeout(sim.bannerTimer);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [player.id, player.cityId]);
 
   /* ---------- dialogues ---------- */
@@ -988,31 +999,33 @@ export default function WorldGame({
   });
 
   /* ---------- handlers clavier / tactile ---------- */
-  handlersRef.current = {
-    interact: () => {
-      const P = propsRef.current;
-      if (P.busy || P.phoneOpen || P.dialogueOpen || P.bigMap || !P.player.alive) return;
-      const it = interactRef.current;
-      if (!it) return;
-      if (it.kind === "exit") doExit();
-      else if (it.kind === "vehicle") setDialogue(vehicleDialogue(it.v));
-      else if (it.kind === "npc") setDialogue(npcDialogue(it.n));
-      else if (it.kind === "building") setDialogue(buildingDialogue(it.b));
-      else if (it.kind === "spot") setDialogue(spotDialogue(it.sp));
-    },
-    toggleMap: () => {
-      if (propsRef.current.phoneOpen || propsRef.current.dialogueOpen) return;
-      setBigMap((m) => !m);
-    },
-    phone: () => {
-      setDialogue(null);
-      actionsRef.current.onPhone();
-    },
-    escape: () => {
-      setDialogue(null);
-      setBigMap(false);
-    },
-  };
+  useEffect(() => {
+    handlersRef.current = {
+      interact: () => {
+        const P = propsRef.current;
+        if (P.busy || P.phoneOpen || P.dialogueOpen || P.bigMap || !P.player.alive) return;
+        const it = interactRef.current;
+        if (!it) return;
+        if (it.kind === "exit") doExit();
+        else if (it.kind === "vehicle") setDialogue(vehicleDialogue(it.v));
+        else if (it.kind === "npc") setDialogue(npcDialogue(it.n));
+        else if (it.kind === "building") setDialogue(buildingDialogue(it.b));
+        else if (it.kind === "spot") setDialogue(spotDialogue(it.sp));
+      },
+      toggleMap: () => {
+        if (propsRef.current.phoneOpen || propsRef.current.dialogueOpen) return;
+        setBigMap((m) => !m);
+      },
+      phone: () => {
+        setDialogue(null);
+        actionsRef.current.onPhone();
+      },
+      escape: () => {
+        setDialogue(null);
+        setBigMap(false);
+      },
+    };
+  });
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
